@@ -1,7 +1,13 @@
+using TestWebApplication.Options;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+builder.Services.Configure<ConnectionStrings>(builder.Configuration.GetSection("ConnectionStrings"));
+
+Settings.ApiKey = builder.Configuration.GetValue<string>("ApiKey");
 
 var app = builder.Build();
 
